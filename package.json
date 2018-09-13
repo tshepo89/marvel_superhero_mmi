@@ -1,0 +1,20 @@
+{
+  "name": "marvel_superhero_mmi",
+  "version": "1.0.0",
+  "description": "marvel superhero app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tshepo89/marvel_superhero_mmi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tshepo89/marvel_superhero_mmi/issues"
+  },
+  "homepage": "https://github.com/tshepo89/marvel_superhero_mmi#readme"
+}
