@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/tshepo89/marvel_superhero_mmi/issues"
   },
-  "homepage": "https://github.com/tshepo89/marvel_superhero_mmi#readme"
+  "homepage": "https://github.com/tshepo89/marvel_superhero_mmi#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
