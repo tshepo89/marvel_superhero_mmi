@@ -19,6 +19,7 @@
   "homepage": "https://github.com/tshepo89/marvel_superhero_mmi#readme",
   "dependencies": {
     "express": "^4.16.3",
-    "md5": "^2.2.1"
+    "md5": "^2.2.1",
+    "request": "^2.88.0"
   }
 }
