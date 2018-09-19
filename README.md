@@ -15,4 +15,5 @@ Install node modules:
 
   Dependencies include:
   1.  express - nodeJS framework (npm i express)
-  2.  md5 - for hashing public and private key (npm i md5)
+  2.  crypto - for hashing public and private key (npm i crypto)
+  3.  cors
