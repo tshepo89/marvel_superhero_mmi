@@ -24,17 +24,16 @@ request(options, function(err, res, body) {
 });
 
 let myurl = 'https://gateway.marvel.com/v1/public/characters?ts=1&apikey='+public_key+'&hash='+hash
-http.createServer(function (req, res) {
+http.createServer(function(req, res) {
    res.writeHead(200, {'Content-Type': 'application/json'});
    //Return the url part of the request object:
    var q = url.parse(myurl, true);
-//   console.log(q.host)
-//   console.log(q.pathname);
-//   console.log(q.search);
+   console.log(JSON.stringify(q))
+   console.log(q.host)
 
    let qdata = q.query
    console.log(qdata)
-   res.write(req.url);
+   res.write(JSON.stringify(q));
    res.end();
    console.log('this is running')
 }).listen(8080);
