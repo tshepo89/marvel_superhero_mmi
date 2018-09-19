@@ -18,24 +18,23 @@ const options = {
   }
 };
 
-
-// let myurl = 'https://gateway.marvel.com/v1/public/characters?ts=1&apikey='+public_key+'&hash='+hash
-// http.createServer(function (req, res) {
-//   res.writeHead(200, {'Content-Type': 'text/html'});
-//   //Return the url part of the request object:
-//   var q = url.parse(myurl, true);
-//   console.log(q.host)
-//   console.log(q.pathname);
-//   console.log(q.search);
-
-//   let qdata = q.query
-//   console.log(qdata)
-//   res.write(req.url);
-//   res.end();
-//   console.log('this is running')
-// }).listen(8080);
-
 request(options, function(err, res, body) {  
   let json = JSON.parse(body);
   console.log(json.data.results[1].name);
 });
+
+let myurl = 'https://gateway.marvel.com/v1/public/characters?ts=1&apikey='+public_key+'&hash='+hash
+http.createServer(function (req, res) {
+   res.writeHead(200, {'Content-Type': 'application/json'});
+   //Return the url part of the request object:
+   var q = url.parse(myurl, true);
+//   console.log(q.host)
+//   console.log(q.pathname);
+//   console.log(q.search);
+
+   let qdata = q.query
+   console.log(qdata)
+   res.write(req.url);
+   res.end();
+   console.log('this is running')
+}).listen(8080);
