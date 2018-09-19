@@ -30,7 +30,23 @@ console.log(url)
 //       'Referer': 'developer.marvel.com',
 //   }
 // };
+app.get('/', (req, res) => {
+  const options = {
+      url: url,
+      headers: {
+          'Referer': 'https://developer.marvel.com/'
+      }
+  };
+  
+  request(options, (error, response, body) => {
+    if (error) {
+      res.json({})
+    }
+    res.json(JSON.parse(body))
+  })
+})
 
+app.listen(port, () => console.log(`Marvel app listening on port ${port}!`))
 
 
 // var req = http.get(options, function(res) {
@@ -42,11 +58,3 @@ console.log(url)
 //   });
 // });
 
-// req.on('error', function(e) {
-//   console.log('problem with request: ' + e.message);
-// });
-
-// write data to request body
-// req.write('data\n');
-// req.write('data\n');
-// req.end();
