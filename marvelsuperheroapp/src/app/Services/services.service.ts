@@ -11,9 +11,9 @@ export class ServicesService {
 
   constructor(private http: HttpClient) { }
 
-  readonly url = 'localhost:8080'
+  readonly url = 'http://localhost:3000'
   
-  getmarvel_super_hero_character(){
+  public getmarvel_super_hero_character(){
     return this.http.get(this.url)
   }
 }

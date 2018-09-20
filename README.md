@@ -16,4 +16,4 @@ Install node modules:
   Dependencies include:
   1.  express - nodeJS framework (npm i express)
   2.  crypto - for hashing public and private key (npm i crypto)
-  3.  cors
+  3.  cors -cross browser orign
