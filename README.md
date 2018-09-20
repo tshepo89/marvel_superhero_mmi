@@ -17,3 +17,6 @@ Install node modules:
   1.  express - nodeJS framework (npm i express)
   2.  crypto - for hashing public and private key (npm i crypto)
   3.  cors -cross browser orign
+
+Run node index in project root folder
+then marvelsuperheroapp (ng serve) - Angular app  
