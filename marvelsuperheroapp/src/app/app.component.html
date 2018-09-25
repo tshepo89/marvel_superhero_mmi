@@ -3,13 +3,31 @@
   <h1>
     <!-- {{loading}} -->
   </h1>
-  <button class="btn btn-success btn-sm" (click)="getmarvel_super_hero_character()">GET CHARACTERS</button>
+  <button class="btn btn-success btn-sm" (click)="getCharacters()">GET CHARACTERS</button>
 <br>
 <br>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-2">Characters</h1>
-    <textarea class="lead"><a>{{data}}</a></textarea>
+    <section>
+      <div *ngFor="let char of allCharactors" (click)="getSingleCharecter(char.id)">
+        <a href="#">{{char.name}}</a>
+      </div>
+    </section>
+    <!-- <textarea class="lead"><a>{{data}}</a></textarea> -->
+  </div>
+  <div>
+    <section *ngIf="loadingSingle">
+      Loading single Character
+    </section>
+  
+    <section *ngIf="singleCharactor">
+      {{singleCharactor.name}}
+      <img [src]="singleCharactor.thumbnail.path+'/standard_medium.jpg'" />
+      {{singleCharactor.description}}
+      {{singleCharactor.modified}}
+      {{singleCharactor.thumbnail.path}}
+    </section>
   </div>
 </div>
   <div style="float:right;border-style: solid;width:30%">
