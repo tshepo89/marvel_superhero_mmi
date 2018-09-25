@@ -47,25 +47,25 @@ app.get('/characters', (req, res) => {
 
 
 app.get('/characters/:id', (req, res) => {
-    const id = req.params.id;
+  const id = req.params.id;
 
-    const url = `${base_url}/${keys}`
+  const url = `${base_url}/${id}${keys}`
 
-    const options = {
-        url: url,
-        headers: {
-            'Referer': 'https://developer.marvel.com/'
-        }
-    };
+  const options = {
+      url: url,
+      headers: {
+          'Referer': 'https://developer.marvel.com/'
+      }
+  };
 
-    request(options, (error, response, body) => {
-        if (error) {
-            res.json({})
-        }
+  request(options, (error, response, body) => {
+      if (error) {
+          res.json({})
+      }
 
-        const data = JSON.parse(body).data;
-        res.json({characters:data});
-    })
+      const data = JSON.parse(body).data.results;
+      res.json({characters:data[0]});
+  })
 })
 
 app.listen(port, () => console.log(`Marvel app listening on port ${port}!`))
