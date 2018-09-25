@@ -9,24 +9,44 @@ import { ServicesService} from './Services/services.service'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'marvelsuperheroapp';
-  loading: boolean = false;
-  data: string;
 
+  title = 'marvelsuperheroapp';
+  loadingAll: boolean = false;
+  loadingSingle: boolean = false;
+  data: string;
+  allCharactors: any[] = [];
+
+  singleCharactor: any = null;
   constructor(private marvelhero_service: ServicesService) { }
 
-  getmarvel_super_hero_character(): void {
-    this.loading = true;
-    
-    this.marvelhero_service.getmarvel_super_hero_character().subscribe(
+  getCharacters(): void {
+    this.loadingAll = true;
+    this.allCharactors = [];
+
+    this.marvelhero_service.getCharecters().subscribe(
       data => {
-        this.data = JSON.stringify(data);
-        console.log(data);
+        this.allCharactors = data['characters'];
+        this.loadingAll = false;
       },
       err => {
         console.log(err);
       }
     )
+  }
 
+
+  getSingleCharecter(id) {
+    this.loadingSingle = true;
+    this.singleCharactor = null;
+    
+    this.marvelhero_service.getSingleCharecter(id).subscribe(
+      data => {
+        this.singleCharactor = data['characters'];
+        this.loadingSingle = false;
+      },
+      err=> {
+        console.log(err);
+      }
+    )
   }
 }
