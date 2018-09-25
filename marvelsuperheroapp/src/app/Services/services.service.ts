@@ -13,7 +13,12 @@ export class ServicesService {
 
   readonly base_url = 'http://localhost:3000'
   
-  public getmarvel_super_hero_character(){
-    return this.http.get(this.base_url+ '/getCharacterNameList')
+  public getCharecters() {
+    return this.http.get('http://localhost:3000/characters')
   }
+
+  public getSingleCharecter(id) {
+    return this.http.get(`http://localhost:3000/characters/${id}`)
+  }
+  
 }
