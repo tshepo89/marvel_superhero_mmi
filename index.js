@@ -17,10 +17,13 @@ const public_key = '3187ef773dc8ab9f494de9798eec872d'
 const hash = crypto.createHash('md5').update(time_stamp+private_key+public_key).digest("hex")
 console.log(hash)
 
-const url = `${base_url}?apikey=${public_key}&hash=${hash}&ts=${time_stamp}`
-console.log(url)
+const keys = `?apikey=${public_key}&hash=${hash}&ts=${time_stamp}`
+//const url = `${base_url}?apikey=${public_key}&hash=${hash}&ts=${time_stamp}`
+// console.log(url)
 
-app.get('/getCharacterNameList', (req, res) => {
+app.get('/characters', (req, res) => {
+  
+  const url = `${base_url}${keys}`
   const options = {
       url: url,
       headers: {
@@ -33,31 +36,36 @@ app.get('/getCharacterNameList', (req, res) => {
       res.json({})
     }
     
-    var data = res.json(JSON.parse(body).data.results
-                  .map(character => {
-         return {name: character.name, id: character.id}
-       }))
+    const data = JSON.parse(body).data.results
+    const payload =  data.map(char => {
+         return {name: char.name, id: char.id}
+    })
+    res.json({characters:payload})
      
   })
 })
 
 
-// app.get('/getCharacter:id', (req, res) => {
-//   const options = {
-//       url: url,
-//       headers: {
-//           'Referer': 'https://developer.marvel.com/'
-//       }
-//   };
-  
-//   request(options, (error, response, body) => {
-//     if (error) {
-//       res.json({})
-//     }
-//     let jsondata =
-    
-//     res.json(JSON.parse(body).data.results[0].name)
-//   })
-// })
+app.get('/characters/:id', (req, res) => {
+    const id = req.params.id;
+
+    const url = `${base_url}/${keys}`
+
+    const options = {
+        url: url,
+        headers: {
+            'Referer': 'https://developer.marvel.com/'
+        }
+    };
+
+    request(options, (error, response, body) => {
+        if (error) {
+            res.json({})
+        }
+
+        const data = JSON.parse(body).data;
+        res.json({characters:data});
+    })
+})
 
 app.listen(port, () => console.log(`Marvel app listening on port ${port}!`))
