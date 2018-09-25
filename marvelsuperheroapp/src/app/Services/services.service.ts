@@ -11,9 +11,9 @@ export class ServicesService {
 
   constructor(private http: HttpClient) { }
 
-  readonly url = 'http://localhost:3000'
+  readonly base_url = 'http://localhost:3000'
   
   public getmarvel_super_hero_character(){
-    return this.http.get(this.url)
+    return this.http.get(this.base_url+ '/getCharacterNameList')
   }
 }

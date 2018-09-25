@@ -16,21 +16,11 @@ const public_key = '3187ef773dc8ab9f494de9798eec872d'
 
 const hash = crypto.createHash('md5').update(time_stamp+private_key+public_key).digest("hex")
 console.log(hash)
-//request('https://gateway.marvel.com/v1/public/characters?ts=1&apikey='+public_key+'&hash='+hash, function(err, res, body){
-  //console.log(body)
-//})
 
 const url = `${base_url}?apikey=${public_key}&hash=${hash}&ts=${time_stamp}`
 console.log(url)
 
-// var options = {
-//   host: 'gateway.marvel.com',
-//   path: 'https://gateway.marvel.com/v1/public/characters?ts=1&apikey='+public_key+'&hash='+hash,
-//   headers: {
-//       'Referer': 'developer.marvel.com',
-//   }
-// };
-app.get('/', (req, res) => {
+app.get('/getCharacterNameList', (req, res) => {
   const options = {
       url: url,
       headers: {
@@ -42,19 +32,32 @@ app.get('/', (req, res) => {
     if (error) {
       res.json({})
     }
-    res.json(JSON.parse(body))
+    
+    var data = res.json(JSON.parse(body).data.results
+                  .map(character => {
+         return {name: character.name, id: character.id}
+       }))
+     
   })
 })
 
+
+// app.get('/getCharacter:id', (req, res) => {
+//   const options = {
+//       url: url,
+//       headers: {
+//           'Referer': 'https://developer.marvel.com/'
+//       }
+//   };
+  
+//   request(options, (error, response, body) => {
+//     if (error) {
+//       res.json({})
+//     }
+//     let jsondata =
+    
+//     res.json(JSON.parse(body).data.results[0].name)
+//   })
+// })
+
 app.listen(port, () => console.log(`Marvel app listening on port ${port}!`))
-
-
-// var req = http.get(options, function(res) {
-//   // console.log('STATUS: ' + res.statusCode);
-//   // console.log('HEADERS: ' + JSON.stringify(res.headers));
-//   // res.setEncoding('utf8');
-//   res.on('data', function (chunk) {
-//     console.log('BODY: ' + chunk);
-//   });
-// });
-
